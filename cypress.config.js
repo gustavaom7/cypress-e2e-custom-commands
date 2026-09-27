@@ -4,7 +4,8 @@ module.exports = defineConfig({
   e2e: {
     baseUrl: 'https://www.saucedemo.com',
     setupNodeEvents(on, config) {
-      require('@cypress/grep/src/plugin')(config);
+      const { plugin: cypressGrepPlugin } = require('@cypress/grep/plugin');
+      cypressGrepPlugin(config);
       return config;
     },
     reporter: 'mochawesome',

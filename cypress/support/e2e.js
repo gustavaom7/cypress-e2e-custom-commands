@@ -1,7 +1,9 @@
 import './commands'
 import addContext from 'mochawesome/addContext'
 import 'cypress-axe'
-import '@cypress/grep/src/support'
+import { register as registerCypressGrep } from '@cypress/grep'
+
+registerCypressGrep()
 
 Cypress.on('test:after:run', (test, runnable) => {
   if (test.state === 'failed') {
