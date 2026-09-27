@@ -13,12 +13,19 @@
     "prereport": "rm -rf cypress/reports && mkdir -p cypress/reports",
     "merge:reports": "mochawesome-merge cypress/reports/*.json > cypress/reports/full-report.json",
     "create:html": "marge cypress/reports/full-report.json --reportDir cypress/reports --inline",
-    "generate:report": "npm run merge:reports && npm run create:html"
+    "generate:report": "npm run merge:reports && npm run create:html",
+    "lint": "eslint cypress",
+    "lint:fix": "eslint cypress --fix",
+    "format": "prettier --write \"cypress/**/*.js\""
   },
   "devDependencies": {
     "cypress": "^15.9.0",
+    "eslint": "^10.11.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-cypress": "^7.0.2",
     "mochawesome": "^7.1.4",
     "mochawesome-merge": "^5.1.0",
-    "mochawesome-report-generator": "^6.3.2"
+    "mochawesome-report-generator": "^6.3.2",
+    "prettier": "^3.9.9"
   }
 }
