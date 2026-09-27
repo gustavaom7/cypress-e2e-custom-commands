@@ -10,7 +10,7 @@
     "test:all": "npm run prereport && cypress run --browser chrome",
     "test:headed": "npm run prereport && cypress run --headed --browser chrome",
     "test:headless": "npm run prereport && cypress run --browser chrome",
-    "test:smoke": "npm run prereport && cypress run --browser chrome --env grepTags=@smoke",
+    "test:smoke": "npm run prereport && cypress run --browser chrome --expose grepTags=\"@smoke\",grepFilterSpecs=true",
     "test:regression": "npm run prereport && cypress run --browser chrome",
     "prereport": "rm -rf cypress/reports && mkdir -p cypress/reports",
     "merge:reports": "mochawesome-merge cypress/reports/mochawesome*.json > cypress/reports/full-report.json",
