@@ -1,3 +1,5 @@
+import { generateApiPost } from '../../support/testData'
+
 describe('API Testing - User Management', () => {
   const baseUrl = 'https://jsonplaceholder.typicode.com'
 
@@ -33,7 +35,7 @@ describe('API Testing - User Management', () => {
 
   // Contract validation
   it('POST - should create a new post and validate contract', function () {
-    const payload = this.apiData.newPost
+    const payload = generateApiPost()
 
     cy.request({
       method: 'POST',
@@ -127,7 +129,7 @@ describe('API Testing - User Management', () => {
 
   // Full update (idempotent) validation
   it('PUT - should fully update an existing post', function () {
-    const payload = this.apiData.newPost
+    const payload = generateApiPost()
 
     cy.request({
       method: 'PUT',
