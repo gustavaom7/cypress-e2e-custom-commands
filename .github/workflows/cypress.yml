@@ -24,39 +24,107 @@ jobs:
       - name: Run lint 🔍
         run: npm run lint
 
-  cypress-run:
+  # Fast feedback on every push/PR: only the tests tagged @smoke.
+  smoke:
     needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
-      - name: Cypress run 🌲
+      - name: Cypress run (smoke) 🌲
         uses: cypress-io/github-action@v6
         continue-on-error: true
-        id: cypress-run
+        id: smoke-run
         with:
           install-command: npm ci
-          command: npm run test:all
+          command: npm run test:smoke
 
       - name: Generate HTML Report 📊
         if: always()
         run: npm run generate:report
 
-      - name: Upload Reports 📊
+      - name: Upload smoke report 📊
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: mochawesome-report
+          name: smoke-report
+          path: cypress/reports
+
+      - name: Fail workflow if smoke tests failed ❌
+        if: steps.smoke-run.outcome == 'failure'
+        run: exit 1
+
+  # Full regression suite, split across parallel jobs by spec folder. Only
+  # runs on pushes to main/master so PRs stay fast (smoke-only) while main
+  # still gets full coverage on every merge.
+  regression:
+    needs: lint
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [api, gui]
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Cypress run (regression - ${{ matrix.suite }}) 🌲
+        uses: cypress-io/github-action@v6
+        continue-on-error: true
+        id: regression-run
+        with:
+          install-command: npm ci
+          command: npm run prereport && npx cypress run --spec 'cypress/e2e/${{ matrix.suite }}/**/*' --browser chrome
+
+      - name: Upload raw mochawesome json 📊
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-json-${{ matrix.suite }}
+          path: cypress/reports/*.json
+
+      - name: Fail workflow if regression tests failed ❌
+        if: steps.regression-run.outcome == 'failure'
+        run: exit 1
+
+  # Merges the per-shard JSON into one HTML report and publishes it, once
+  # both regression shards have finished (regardless of pass/fail).
+  merge-regression-report:
+    needs: regression
+    if: always() && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup Node 🟢
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies 📦
+        run: npm ci
+
+      - name: Download all regression shard reports 📥
+        uses: actions/download-artifact@v4
+        with:
+          pattern: regression-json-*
+          path: cypress/reports
+          merge-multiple: true
+
+      - name: Generate merged HTML Report 📊
+        run: npm run generate:report
+
+      - name: Upload merged regression report 📊
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-report
           path: cypress/reports
 
       - name: Deploy to GitHub Pages 🚀
-        if: always()
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: cypress/reports
           branch: gh-pages
-
-      - name: Fail workflow if tests failed ❌
-        if: steps.cypress-run.outcome == 'failure'
-        run: exit 1
