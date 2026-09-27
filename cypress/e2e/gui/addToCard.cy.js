@@ -1,6 +1,7 @@
 import LoginPage from '../../support/pageobjects/LoginPage'
 import addToCart from '../../support/pageobjects/homePage'
 import cartPage from '../../support/pageobjects/CartPage'
+import { generateCheckoutInfo } from '../../support/testData'
 
 describe('Shopping Cart Tests', () => {
   let credentials
@@ -66,7 +67,7 @@ describe('Shopping Cart Tests', () => {
     // Click checkout button
     cartPage.checkoutButtonClick()
     // Fill form correctly
-    cartPage.fillCheckoutFormCorrectly(credentials.checkoutInfo)
+    cartPage.fillCheckoutFormCorrectly(generateCheckoutInfo())
     // Click Continue button at checkout screen
     cartPage.continueButtonCheckout()
     // Finish the operation
@@ -109,7 +110,7 @@ describe('Shopping Cart Tests', () => {
     // Click checkout button
     cartPage.checkoutButtonClick()
     // Fill form correctly
-    cartPage.fillCheckoutFormCorrectly(credentials.checkoutInfo)
+    cartPage.fillCheckoutFormCorrectly(generateCheckoutInfo())
     // Move to the checkout overview
     cartPage.continueButtonCheckout()
     // Business rule: total must equal subtotal + tax

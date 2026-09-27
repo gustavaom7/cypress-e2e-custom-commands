@@ -3,10 +3,5 @@
   "password": "secret_sauce",
   "lockedOutUser": "locked_out_user",
   "invalidPassword": "wrong_password_123",
-  "invalidUsername": "invalid_user",
-  "checkoutInfo": {
-    "firstName": "Gustavo",
-    "lastName": "Mesquita",
-    "postalCode": "37191018"
-  }
+  "invalidUsername": "invalid_user"
 }
