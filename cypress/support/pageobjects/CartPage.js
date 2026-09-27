@@ -61,10 +61,10 @@ class cartPage {
         this.elements.continueButtonCheckout().click()
     }
 
-    fillCheckoutFormCorrectly() {
-        this.elements.firstNameField().type('Gustavo')
-        this.elements.lastNameField().type('Mesquita')
-        this.elements.postalCodeField().type('37191018')
+    fillCheckoutFormCorrectly(checkoutInfo) {
+        this.elements.firstNameField().type(checkoutInfo.firstName)
+        this.elements.lastNameField().type(checkoutInfo.lastName)
+        this.elements.postalCodeField().type(checkoutInfo.postalCode)
     }
 
     clickFinishCheckout() {

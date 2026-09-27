@@ -67,7 +67,7 @@ describe('Shopping Cart Tests', () => {
         // Click checkout button
         cartPage.checkoutButtonClick()
         // Fill form correctly
-        cartPage.fillCheckoutFormCorrectly()
+        cartPage.fillCheckoutFormCorrectly(credentials.checkoutInfo)
         // Click Continue button at checkout screen
         cartPage.continueButtonCheckout()
         // Finish the operation
@@ -111,7 +111,7 @@ describe('Shopping Cart Tests', () => {
         // Click checkout button
         cartPage.checkoutButtonClick()
         // Fill form correctly
-        cartPage.fillCheckoutFormCorrectly()
+        cartPage.fillCheckoutFormCorrectly(credentials.checkoutInfo)
         // Move to the checkout overview
         cartPage.continueButtonCheckout()
         // Business rule: total must equal subtotal + tax
