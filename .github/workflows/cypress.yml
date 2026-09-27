@@ -15,22 +15,30 @@ jobs:
 
       - name: Cypress run 🌲
         uses: cypress-io/github-action@v6
+        continue-on-error: true
+        id: cypress-run
         with:
           install-command: npm ci
-          command: npm run test:all && npm run generate:report
+          command: npm run test:all
+
+      - name: Generate HTML Report 📊
+        if: always()
+        run: npm run generate:report
 
       - name: Upload Reports 📊
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-report
-          path: cypress/reports/html
-
-      - name: Generate HTML Report 📊
-        run: npm run generate:report
+          path: cypress/reports
 
       - name: Deploy to GitHub Pages 🚀
+        if: always()
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: cypress/reports 
-          branch: gh-pages 
+          folder: cypress/reports
+          branch: gh-pages
+
+      - name: Fail workflow if tests failed ❌
+        if: steps.cypress-run.outcome == 'failure'
+        run: exit 1
