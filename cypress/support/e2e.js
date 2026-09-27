@@ -1,6 +1,7 @@
 import './commands'
 import addContext from 'mochawesome/addContext'
 import 'cypress-axe'
+import '@cypress/grep/src/support'
 
 Cypress.on('test:after:run', (test, runnable) => {
   if (test.state === 'failed') {

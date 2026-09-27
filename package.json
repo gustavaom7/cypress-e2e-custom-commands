@@ -10,6 +10,8 @@
     "test:all": "npm run prereport && cypress run --browser chrome",
     "test:headed": "npm run prereport && cypress run --headed --browser chrome",
     "test:headless": "npm run prereport && cypress run --browser chrome",
+    "test:smoke": "npm run prereport && cypress run --browser chrome --env grepTags=@smoke",
+    "test:regression": "npm run prereport && cypress run --browser chrome",
     "prereport": "rm -rf cypress/reports && mkdir -p cypress/reports",
     "merge:reports": "mochawesome-merge cypress/reports/*.json > cypress/reports/full-report.json",
     "create:html": "marge cypress/reports/full-report.json --reportDir cypress/reports --inline",
@@ -19,6 +21,7 @@
     "format": "prettier --write \"cypress/**/*.js\""
   },
   "devDependencies": {
+    "@cypress/grep": "^7.0.0",
     "@faker-js/faker": "^10.6.0",
     "axe-core": "^4.13.0",
     "cypress": "^15.9.0",
