@@ -19,7 +19,7 @@ describe('API Testing - User Management', () => {
   })
 
   // Users list structure validation
-  it('GET - should validate the users list structure', () => {
+  it('GET - should validate the users list structure', { tags: '@smoke' }, () => {
     cy.request({
       method: 'GET',
       url: `${baseUrl}/users`
@@ -34,7 +34,7 @@ describe('API Testing - User Management', () => {
   })
 
   // Contract validation
-  it('POST - should create a new post and validate contract', function () {
+  it('POST - should create a new post and validate contract', { tags: '@smoke' }, function () {
     const payload = generateApiPost()
 
     cy.request({

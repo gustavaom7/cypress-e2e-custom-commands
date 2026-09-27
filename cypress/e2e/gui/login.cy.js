@@ -15,7 +15,7 @@ describe('SauceDemo Login Tests', () => {
     LoginPage.visit()
   })
 
-  it('should login successfully with valid credentials', () => {
+  it('should login successfully with valid credentials', { tags: '@smoke' }, () => {
     LoginPage.submitLogin(credentials.standardUser, credentials.password)
 
     // Validation: Verify URL redirection

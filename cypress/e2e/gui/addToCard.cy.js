@@ -57,7 +57,7 @@ describe('Shopping Cart Tests', () => {
     cy.checkVisible('[data-test="error"]')
   })
 
-  it('checkout successfully', () => {
+  it('checkout successfully', { tags: '@smoke' }, () => {
     // Add backpack to cart
     addToCart.addBackpackToCart()
     // Open cart
