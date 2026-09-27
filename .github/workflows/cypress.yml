@@ -83,7 +83,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: regression-json-${{ matrix.suite }}
-          path: cypress/reports/*.json
+          path: cypress/reports/mochawesome*.json
 
       - name: Fail workflow if regression tests failed ❌
         if: steps.regression-run.outcome == 'failure'

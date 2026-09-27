@@ -13,7 +13,7 @@
     "test:smoke": "npm run prereport && cypress run --browser chrome --env grepTags=@smoke",
     "test:regression": "npm run prereport && cypress run --browser chrome",
     "prereport": "rm -rf cypress/reports && mkdir -p cypress/reports",
-    "merge:reports": "mochawesome-merge cypress/reports/*.json > cypress/reports/full-report.json",
+    "merge:reports": "mochawesome-merge cypress/reports/mochawesome*.json > cypress/reports/full-report.json",
     "create:html": "marge cypress/reports/full-report.json --reportDir cypress/reports --inline",
     "generate:report": "npm run merge:reports && npm run create:html",
     "lint": "eslint cypress",
