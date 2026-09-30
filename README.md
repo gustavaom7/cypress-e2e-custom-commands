@@ -23,6 +23,7 @@ Professional hybrid automation suite (GUI & API) developed with **Cypress** and 
 
 ### ⚡ Performance Testing
 * **Load Testing (k6):** Smoke (1 VU, 30s) and load (ramp to 10 VUs) profiles against the API, with thresholds that fail the run: p95 < 800ms, < 1% failed requests, > 99% passing checks. Kept deliberately light because JSONPlaceholder is a shared public service — no stress/spike profiles.
+* **Web Vitals (Lighthouse):** Performance, accessibility and best-practices audits of the login and inventory pages via `@cypress-audit/lighthouse`, reusing `cy.login`. Thresholds are intentionally loose (performance ≥ 60 against a ~68–70 baseline) since Lighthouse scores vary run to run.
 
 ### ⚙️ DevOps & CI/CD
 * **GitHub Actions:** Lint gate, a fast smoke suite on every push/PR, and a full regression suite (parallelized across a job matrix) on every push to `main`.
@@ -41,6 +42,7 @@ testsArchitecture/
 │   ├── e2e/
 │   │   ├── api/         # Backend contract, mocking and functional tests
 │   │   └── gui/         # UI/Functional and accessibility tests (SauceDemo)
+│   ├── lighthouse/      # Lighthouse audits (outside e2e/, so regular suites skip them)
 │   ├── fixtures/        # Test data in JSON format
 │   └── support/         # Custom commands, dynamic test data and global config
 ├── performance/
@@ -78,7 +80,9 @@ testsArchitecture/
 
 **k6 Load:** `npm run perf:load`
 
-Reports land in `performance/reports/` (`*-report.html` and `*-summary.json`).
+**Lighthouse (Chrome):** `npm run test:lighthouse`
+
+k6 reports land in `performance/reports/` (`*-report.html` and `*-summary.json`).
 
 4. **Code Quality**
 
@@ -92,7 +96,7 @@ The automation runs on **Ubuntu-latest** via **GitHub Actions**, with four stage
 1. **Lint** — runs on every push/PR, gates everything else.
 2. **Smoke** — a small set of critical happy-path tests, runs on every push/PR for fast feedback.
 3. **Regression** — the full suite, split into parallel jobs by spec folder, runs on every push to `main`/`master`; a follow-up job merges every shard's report into one HTML report and publishes it, even if some tests failed.
-4. **Performance** — k6 smoke on every push/PR; k6 load only on pushes to `main`/`master`. Reports are uploaded as workflow artifacts.
+4. **Performance** — k6 smoke on every push/PR; k6 load and Lighthouse audits only on pushes to `main`/`master`. Reports are uploaded as workflow artifacts.
 
 [**📊 View Latest Automation Report**](https://gustavaom7.github.io/testsArchitecture/full-report.html)
 

@@ -171,3 +171,18 @@ jobs:
         with:
           folder: cypress/reports
           branch: gh-pages
+
+  lighthouse:
+    needs: lint
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Lighthouse audit 🔦
+        uses: cypress-io/github-action@v6
+        with:
+          install-command: npm ci
+          command: npm run test:lighthouse
+          browser: chrome
