@@ -1,3 +1,5 @@
+import { generateApiPost } from '../../support/testData'
+
 describe('API Testing - User Management', () => {
   const baseUrl = 'https://jsonplaceholder.typicode.com'
 
@@ -17,14 +19,14 @@ describe('API Testing - User Management', () => {
   })
 
   // Users list structure validation
-  it('GET - should validate the users list structure', () => {
+  it('GET - should validate the users list structure', { tags: '@smoke' }, () => {
     cy.request({
       method: 'GET',
-      url: `${baseUrl}/users`,
+      url: `${baseUrl}/users`
     }).then((response) => {
       expect(response.status).to.eq(200)
       expect(response.duration).to.be.lessThan(1000)
-      
+
       expect(response.body).to.be.an('array')
       expect(response.body[0]).to.have.property('id')
       expect(response.body[0].address).to.have.property('geo')
@@ -32,8 +34,8 @@ describe('API Testing - User Management', () => {
   })
 
   // Contract validation
-  it('POST - should create a new post and validate contract', function () {
-    const payload = this.apiData.newPost
+  it('POST - should create a new post and validate contract', { tags: '@smoke' }, function () {
+    const payload = generateApiPost()
 
     cy.request({
       method: 'POST',
@@ -67,7 +69,7 @@ describe('API Testing - User Management', () => {
     }).then((response) => {
       // If body is null, returns error
       // No JSONPlaceholder returns 201, but should be 400
-      expect(response.status).to.be.oneOf([201, 400]) 
+      expect(response.status).to.be.oneOf([201, 400])
     })
   })
 
@@ -89,10 +91,17 @@ describe('API Testing - User Management', () => {
       expect(user.id).to.be.a(schema.id)
       expect(user.name).to.be.a(schema.name)
       expect(user.email).to.be.a(schema.email)
-      
+
       // Check if mandatory fields are present
       expect(user).to.have.all.keys(
-        'id', 'name', 'username', 'email', 'address', 'phone', 'website', 'company'
+        'id',
+        'name',
+        'username',
+        'email',
+        'address',
+        'phone',
+        'website',
+        'company'
       )
 
       // Format validation (Regex)
@@ -106,21 +115,21 @@ describe('API Testing - User Management', () => {
       method: 'GET',
       url: `${baseUrl}/posts/1`,
       headers: {
-        'Authorization': `Bearer ${this.apiData.auth.token}`,
+        Authorization: `Bearer ${this.apiData.auth.token}`,
         'Content-Type': 'application/json'
       }
     }).then((response) => {
       // Check if token was accepted
       expect(response.status).to.eq(200)
 
-    // Checking if header response confirms content type
+      // Checking if header response confirms content type
       expect(response.headers['content-type']).to.include('application/json')
     })
   })
 
   // Full update (idempotent) validation
   it('PUT - should fully update an existing post', function () {
-    const payload = this.apiData.newPost
+    const payload = generateApiPost()
 
     cy.request({
       method: 'PUT',

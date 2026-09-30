@@ -1,22 +1,22 @@
 class LoginPage {
-    // Locators
-    elements = {
-        usernameInput: () => cy.get('[data-test="username"]'),
-        passwordInput: () => cy.get('[data-test="password"]'),
-        loginBtn:      () => cy.get('[data-test="login-button"]'),
-        errorMessage:  () => cy.get('[data-test="error"]')
-    }
+  // Locators
+  elements = {
+    usernameInput: () => cy.get('[data-test="username"]'),
+    passwordInput: () => cy.get('[data-test="password"]'),
+    loginBtn: () => cy.get('[data-test="login-button"]'),
+    errorMessage: () => cy.get('[data-test="error"]')
+  }
 
-    // Actions
-    visit() {
-        cy.visit('https://www.saucedemo.com/')
-    }
+  // Actions
+  visit() {
+    cy.visit('https://www.saucedemo.com/')
+  }
 
-    submitLogin(username, password) {
-        this.elements.usernameInput().type(username)
-        this.elements.passwordInput().type(password)
-        this.elements.loginBtn().click()
-    }
+  submitLogin(username, password) {
+    this.elements.usernameInput().type(username)
+    this.elements.passwordInput().type(password)
+    this.elements.loginBtn().click()
+  }
 }
 
-export default new LoginPage();
+export default new LoginPage()

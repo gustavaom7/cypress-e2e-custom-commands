@@ -1,4 +1,7 @@
 
+# OS files
+.DS_Store
+
 #Cypress folders
 cypress/reports
 cypress/screenshots

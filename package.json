@@ -4,24 +4,34 @@
   "description": "Professional Hybrid Automation Framework (API & GUI)",
   "main": "index.js",
   "scripts": {
-    "test:api": "cypress run --spec 'cypress/e2e/api/**/*'",
-    "test:gui": "cypress run --spec 'cypress/e2e/gui/**/*'",
-    "test:chrome": "cypress run --browser chrome",
-    "test:all": "cypress run --browser chrome",
+    "test:api": "npm run prereport && cypress run --spec 'cypress/e2e/api/**/*'",
+    "test:gui": "npm run prereport && cypress run --spec 'cypress/e2e/gui/**/*'",
+    "test:chrome": "npm run prereport && cypress run --browser chrome",
+    "test:all": "npm run prereport && cypress run --browser chrome",
+    "test:headed": "npm run prereport && cypress run --headed --browser chrome",
+    "test:headless": "npm run prereport && cypress run --browser chrome",
+    "test:smoke": "npm run prereport && cypress run --browser chrome --expose grepTags=\"@smoke\",grepFilterSpecs=true",
+    "test:regression": "npm run prereport && cypress run --browser chrome",
     "prereport": "rm -rf cypress/reports && mkdir -p cypress/reports",
-    "merge:reports": "mochawesome-merge cypress/reports/*.json > cypress/reports/full-report.json",
+    "merge:reports": "mochawesome-merge cypress/reports/mochawesome*.json > cypress/reports/full-report.json",
     "create:html": "marge cypress/reports/full-report.json --reportDir cypress/reports --inline",
-    "generate:report": "npm run merge:reports && npm run create:html"
+    "generate:report": "npm run merge:reports && npm run create:html",
+    "lint": "eslint cypress",
+    "lint:fix": "eslint cypress --fix",
+    "format": "prettier --write \"cypress/**/*.js\""
   },
   "devDependencies": {
+    "@cypress/grep": "^7.0.0",
+    "@faker-js/faker": "^10.6.0",
+    "axe-core": "^4.13.0",
     "cypress": "^15.9.0",
-    "cypress-dotenv": "^2.0.0",
-    "dotenv": "^10.0.0",
+    "cypress-axe": "^1.7.0",
+    "eslint": "^10.11.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-cypress": "^7.0.2",
     "mochawesome": "^7.1.4",
     "mochawesome-merge": "^5.1.0",
-    "mochawesome-report-generator": "^6.3.2"
-  },
-  "dependencies": {
-    "cypress-tags": "^0.3.0"
+    "mochawesome-report-generator": "^6.3.2",
+    "prettier": "^3.9.9"
   }
 }
