@@ -49,6 +49,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: smoke-report
+          retention-days: 7
           path: cypress/reports
 
       - name: Fail workflow if smoke tests failed ❌
@@ -75,6 +76,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: k6-smoke-report
+          retention-days: 7
           path: performance/reports
 
   perf-load:
@@ -96,6 +98,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: k6-load-report
+          retention-days: 7
           path: performance/reports
 
   # Full regression suite, split across parallel jobs by spec folder. Only
@@ -126,6 +129,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: regression-json-${{ matrix.suite }}
+          retention-days: 1
           path: cypress/reports/mochawesome*.json
 
       - name: Fail workflow if regression tests failed ❌
@@ -164,6 +168,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: regression-report
+          retention-days: 7
           path: cypress/reports
 
       - name: Deploy to GitHub Pages 🚀
@@ -186,3 +191,37 @@ jobs:
           install-command: npm ci
           command: npm run test:lighthouse
           browser: chrome
+
+  # Visual regression against baselines committed from CI (Linux) runs.
+  # Skipped until baselines exist; see the "Visual baselines" workflow.
+  visual:
+    needs: lint
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Check for baselines 🔎
+        id: baselines
+        run: echo "present=$(ls cypress/visual/cypress-image-diff-screenshots/baseline/*.png >/dev/null 2>&1 && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+      - name: Visual regression 🖼️
+        if: steps.baselines.outputs.present == 'true'
+        uses: cypress-io/github-action@v6
+        with:
+          install-command: npm ci
+          command: npm run test:visual
+          browser: chrome
+
+      # Diffs are only useful to inspect a failure; keep them briefly
+      - name: Upload visual diffs 🖼️
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-diffs
+          path: |
+            cypress/visual/cypress-image-diff-screenshots/comparison
+            cypress/visual/cypress-image-diff-screenshots/diff
+            cypress/visual/cypress-image-diff-html-report
+          retention-days: 3
