@@ -21,6 +21,9 @@ Professional hybrid automation suite (GUI & API) developed with **Cypress** and 
 * **Network Mocking:** `cy.intercept`-driven simulation of server errors, network failures and slow responses that a live third-party API can't reliably reproduce on demand.
 * **Negative Scenarios:** Coverage for 404 errors, bad requests, and SLA performance validation.
 
+### ⚡ Performance Testing
+* **Load Testing (k6):** Smoke (1 VU, 30s) and load (ramp to 10 VUs) profiles against the API, with thresholds that fail the run: p95 < 800ms, < 1% failed requests, > 99% passing checks. Kept deliberately light because JSONPlaceholder is a shared public service — no stress/spike profiles.
+
 ### ⚙️ DevOps & CI/CD
 * **GitHub Actions:** Lint gate, a fast smoke suite on every push/PR, and a full regression suite (parallelized across a job matrix) on every push to `main`.
 * **Test Tagging:** Smoke vs. regression split via `@cypress/grep`.
@@ -40,6 +43,9 @@ testsArchitecture/
 │   │   └── gui/         # UI/Functional and accessibility tests (SauceDemo)
 │   ├── fixtures/        # Test data in JSON format
 │   └── support/         # Custom commands, dynamic test data and global config
+├── performance/
+│   ├── k6/              # k6 load tests (smoke/load profiles, shared scenarios)
+│   └── reports/         # k6 JSON/HTML summaries (git-ignored)
 ├── cypress.config.js    # Cypress main configuration
 └── package.json         # Scripts and dependencies
 ```
@@ -66,18 +72,27 @@ testsArchitecture/
 
 **Full Regression Suite:** `npm run test:regression`
 
-3. **Code Quality**
+3. **Performance Tests** (requires the [k6](https://grafana.com/docs/k6/latest/set-up/install-k6/) binary, e.g. `brew install k6`)
+
+**k6 Smoke:** `npm run perf:smoke`
+
+**k6 Load:** `npm run perf:load`
+
+Reports land in `performance/reports/` (`*-report.html` and `*-summary.json`).
+
+4. **Code Quality**
 
 **Lint:** `npm run lint` (`npm run lint:fix` to auto-fix)
 
 **Format:** `npm run format`
 
 ## 📊 CI/CD Workflow
-The automation runs on **Ubuntu-latest** via **GitHub Actions**, with three stages:
+The automation runs on **Ubuntu-latest** via **GitHub Actions**, with four stages:
 
 1. **Lint** — runs on every push/PR, gates everything else.
 2. **Smoke** — a small set of critical happy-path tests, runs on every push/PR for fast feedback.
 3. **Regression** — the full suite, split into parallel jobs by spec folder, runs on every push to `main`/`master`; a follow-up job merges every shard's report into one HTML report and publishes it, even if some tests failed.
+4. **Performance** — k6 smoke on every push/PR; k6 load only on pushes to `main`/`master`. Reports are uploaded as workflow artifacts.
 
 [**📊 View Latest Automation Report**](https://gustavaom7.github.io/testsArchitecture/full-report.html)
 
