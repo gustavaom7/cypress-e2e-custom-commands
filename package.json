@@ -14,6 +14,7 @@
     "test:regression": "npm run prereport && cypress run --browser chrome",
     "perf:smoke": "k6 run performance/k6/smoke.test.js",
     "perf:load": "k6 run performance/k6/load.test.js",
+    "test:lighthouse": "npm run prereport && cypress run --browser chrome --config specPattern='cypress/lighthouse/**/*.cy.js'",
     "prereport": "rm -rf cypress/reports && mkdir -p cypress/reports",
     "merge:reports": "mochawesome-merge cypress/reports/mochawesome*.json > cypress/reports/full-report.json",
     "create:html": "marge cypress/reports/full-report.json --reportDir cypress/reports --inline",
@@ -23,6 +24,7 @@
     "format": "prettier --write \"cypress/**/*.js\""
   },
   "devDependencies": {
+    "@cypress-audit/lighthouse": "^1.4.2",
     "@cypress/grep": "^7.0.0",
     "@faker-js/faker": "^10.6.0",
     "axe-core": "^4.13.0",

@@ -13,6 +13,13 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       const { plugin: cypressGrepPlugin } = require('@cypress/grep/plugin');
       cypressGrepPlugin(config);
+
+      const { lighthouse, prepareAudit } = require('@cypress-audit/lighthouse');
+      on('before:browser:launch', (browser = {}, launchOptions) => {
+        prepareAudit(launchOptions);
+      });
+      on('task', { lighthouse: lighthouse() });
+
       return config;
     },
     reporter: 'mochawesome',
