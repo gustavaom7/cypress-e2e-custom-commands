@@ -55,6 +55,49 @@ jobs:
         if: steps.smoke-run.outcome == 'failure'
         run: exit 1
 
+  # API load testing with k6. Smoke (1 VU, 30s) runs on every push/PR; the
+  # heavier load profile (10 VUs) only runs on pushes to main/master.
+  perf-smoke:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup k6 ⚡
+        uses: grafana/setup-k6-action@v1
+
+      - name: k6 smoke ⚡
+        run: k6 run performance/k6/smoke.test.js
+
+      - name: Upload k6 smoke report 📊
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k6-smoke-report
+          path: performance/reports
+
+  perf-load:
+    needs: lint
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup k6 ⚡
+        uses: grafana/setup-k6-action@v1
+
+      - name: k6 load ⚡
+        run: k6 run performance/k6/load.test.js
+
+      - name: Upload k6 load report 📊
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k6-load-report
+          path: performance/reports
+
   # Full regression suite, split across parallel jobs by spec folder. Only
   # runs on pushes to main/master so PRs stay fast (smoke-only) while main
   # still gets full coverage on every merge.
