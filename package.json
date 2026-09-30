@@ -12,6 +12,8 @@
     "test:headless": "npm run prereport && cypress run --browser chrome",
     "test:smoke": "npm run prereport && cypress run --browser chrome --expose grepTags=\"@smoke\",grepFilterSpecs=true",
     "test:regression": "npm run prereport && cypress run --browser chrome",
+    "perf:smoke": "k6 run performance/k6/smoke.test.js",
+    "perf:load": "k6 run performance/k6/load.test.js",
     "prereport": "rm -rf cypress/reports && mkdir -p cypress/reports",
     "merge:reports": "mochawesome-merge cypress/reports/mochawesome*.json > cypress/reports/full-report.json",
     "create:html": "marge cypress/reports/full-report.json --reportDir cypress/reports --inline",
