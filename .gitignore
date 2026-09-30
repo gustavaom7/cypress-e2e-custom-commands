@@ -10,6 +10,10 @@ cypress/videos
 #Environment
 .env*
 
+#Performance reports
+performance/reports/*
+!performance/reports/.gitkeep
+
 #Report
 *.html
 *.html
