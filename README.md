@@ -1,7 +1,7 @@
 # 🧪 Advanced Quality Architecture - SauceDemo & API
 
-![Cypress Tests](https://github.com/gustavaom7/testsArchitecture/actions/workflows/cypress.yml/badge.svg)
-[![Quality](https://img.shields.io/badge/Quality-Assurance-orange)](https://github.com/gustavaom7/testsArchitecture)
+![Cypress Tests](https://github.com/gustavaom7/cypress-e2e-custom-commands/actions/workflows/cypress.yml/badge.svg)
+[![Quality](https://img.shields.io/badge/Quality-Assurance-orange)](https://github.com/gustavaom7/cypress-e2e-custom-commands)
 
 Professional hybrid automation suite (GUI & API) developed with **Cypress** and **JavaScript**. This project demonstrates advanced automation patterns, performance optimization, and full integration with CI/CD pipelines.
 
@@ -38,7 +38,7 @@ Professional hybrid automation suite (GUI & API) developed with **Cypress** and 
 ## 🏗️ Project Structure
 
 ```text
-testsArchitecture/
+cypress-e2e-custom-commands/
 ├── .github/workflows/   # CI/CD Pipeline configuration
 ├── cypress/
 │   ├── e2e/
@@ -104,7 +104,7 @@ The automation runs on **Ubuntu-latest** via **GitHub Actions**, with four stage
 4. **Performance** — k6 smoke on every push/PR; k6 load and Lighthouse audits only on pushes to `main`/`master`.
 5. **Visual** — screenshot comparison on pushes to `main`/`master` (skipped until baselines are committed). CI artifacts use short retention (1–7 days) so reports don't pile up. Reports are uploaded as workflow artifacts.
 
-[**📊 View Latest Automation Report**](https://gustavaom7.github.io/testsArchitecture/full-report.html)
+[**📊 View Latest Automation Report**](https://gustavaom7.github.io/cypress-e2e-custom-commands/full-report.html)
 
 ## 👤 Author
 

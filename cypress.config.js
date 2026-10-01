@@ -3,6 +3,8 @@ const { defineConfig } = require("cypress");
 module.exports = defineConfig({
   e2e: {
     baseUrl: 'https://www.saucedemo.com',
+    // Specs read config via Cypress.expose(); keep Cypress.env() out of the browser
+    allowCypressEnv: false,
     // Retry once in CI (`cypress run`) to absorb transient network/timing
     // flakiness against the real, public saucedemo.com/jsonplaceholder
     // services; interactive `cypress open` runs stay unaffected.
