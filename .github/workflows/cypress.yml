@@ -55,7 +55,7 @@ jobs:
 
       - name: Upload smoke report 📊
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: smoke-report-${{ matrix.viewport }}
           retention-days: 7
@@ -82,7 +82,7 @@ jobs:
 
       - name: Upload k6 smoke report 📊
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: k6-smoke-report
           retention-days: 7
@@ -104,7 +104,7 @@ jobs:
 
       - name: Upload k6 load report 📊
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: k6-load-report
           retention-days: 7
@@ -135,7 +135,7 @@ jobs:
 
       - name: Upload raw mochawesome json 📊
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: regression-json-${{ matrix.suite }}
           retention-days: 1
@@ -176,7 +176,7 @@ jobs:
         run: npm run generate:report
 
       - name: Upload merged regression report 📊
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: regression-report
           retention-days: 7
@@ -228,7 +228,7 @@ jobs:
       # Diffs are only useful to inspect a failure; keep them briefly
       - name: Upload visual diffs 🖼️
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: visual-diffs
           path: |
