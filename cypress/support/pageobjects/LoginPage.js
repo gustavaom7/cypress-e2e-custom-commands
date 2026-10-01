@@ -13,8 +13,9 @@ class LoginPage {
   }
 
   submitLogin(username, password) {
-    this.elements.usernameInput().type(username)
-    this.elements.passwordInput().type(password)
+    // cy.type() rejects empty strings; skip the field to submit it blank
+    if (username) this.elements.usernameInput().type(username)
+    if (password) this.elements.passwordInput().type(password)
     this.elements.loginBtn().click()
   }
 }
