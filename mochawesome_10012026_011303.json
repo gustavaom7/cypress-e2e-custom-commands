@@ -1,0 +1,220 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 7,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-10-01T01:12:25.440Z",
+    "end": "2026-10-01T01:13:03.205Z",
+    "duration": 37765,
+    "testsRegistered": 7,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e24e7629-1107-493e-b0a8-1928e3eeb4d1",
+      "title": "",
+      "fullFile": "cypress/e2e/gui/addToCard.cy.js",
+      "file": "cypress/e2e/gui/addToCard.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "62b36111-1841-433c-9543-947e530cb2e1",
+          "title": "Shopping Cart Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "add Sauce Labs Backpack to the cart",
+              "fullTitle": "Shopping Cart Tests add Sauce Labs Backpack to the cart",
+              "timedOut": null,
+              "duration": 5233,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Add backpack to cart\n_homePage.default.addBackpackToCart();\n// Open cart\n_CartPage.default.openCart();\n// Check if item is in the cart\n_CartPage.default.checkItemInCart('Sauce Labs Backpack');",
+              "err": {},
+              "uuid": "bfb73f71-9992-4333-a0c7-7879a6c89a2b",
+              "parentUUID": "62b36111-1841-433c-9543-947e530cb2e1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "remove Source Labs Backpack from the cart",
+              "fullTitle": "Shopping Cart Tests remove Source Labs Backpack from the cart",
+              "timedOut": null,
+              "duration": 5154,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Add backpack to cart\n_homePage.default.addBackpackToCart();\n// Open cart\n_CartPage.default.openCart();\n// Check if item is in the cart\n_CartPage.default.checkItemInCart('Sauce Labs Backpack');\n// Remove item from the cart\n_CartPage.default.removeFromCart('Sauce Labs Backpack');\n// Check if elemet was removed successfully\n_CartPage.default.checkItemNotVisible('Sauce Labs Backpack');",
+              "err": {},
+              "uuid": "cb0c4e25-3b2b-4fa9-a208-1cab48e58db1",
+              "parentUUID": "62b36111-1841-433c-9543-947e530cb2e1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "checkout not filling any mandatory field",
+              "fullTitle": "Shopping Cart Tests checkout not filling any mandatory field",
+              "timedOut": null,
+              "duration": 5177,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Add backpack to cart\n_homePage.default.addBackpackToCart();\n// Open cart\n_CartPage.default.openCart();\n// Check if item is in the cart\n_CartPage.default.checkItemInCart('Sauce Labs Backpack');\n// Click checkout button\n_CartPage.default.checkoutButtonClick();\n// Click Continue button at checkout screen\n_CartPage.default.continueButtonCheckout();\n// Check if error is visible\ncy.checkVisible('[data-test=\"error\"]');",
+              "err": {},
+              "uuid": "d8741925-e02c-4d14-abfe-62ea20579b1e",
+              "parentUUID": "62b36111-1841-433c-9543-947e530cb2e1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "checkout successfully",
+              "fullTitle": "Shopping Cart Tests checkout successfully",
+              "timedOut": null,
+              "duration": 5878,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Add backpack to cart\n_homePage.default.addBackpackToCart();\n// Open cart\n_CartPage.default.openCart();\n// Check if item is in the cart\n_CartPage.default.checkItemInCart('Sauce Labs Backpack');\n// Click checkout button\n_CartPage.default.checkoutButtonClick();\n// Fill form correctly\n_CartPage.default.fillCheckoutFormCorrectly((0, _testData.generateCheckoutInfo)());\n// Click Continue button at checkout screen\n_CartPage.default.continueButtonCheckout();\n// Finish the operation\n_CartPage.default.clickFinishCheckout();\n// Check confirmation message\ncy.checkVisible('[data-test=\"complete-header\"]');",
+              "err": {},
+              "uuid": "ebc41c52-2ca5-439a-b50f-f438c244e3e2",
+              "parentUUID": "62b36111-1841-433c-9543-947e530cb2e1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "return to the inventory page when clicking continue shopping",
+              "fullTitle": "Shopping Cart Tests return to the inventory page when clicking continue shopping",
+              "timedOut": null,
+              "duration": 5116,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Add backpack to cart\n_homePage.default.addBackpackToCart();\n// Open cart\n_CartPage.default.openCart();\n// Click continue shopping\n_CartPage.default.clickContinueShopping();\n// Should be back on the inventory page, with the item still in the cart\ncy.url().should('include', '/inventory.html');\n_homePage.default.checkCartBadgeCount(1);",
+              "err": {},
+              "uuid": "bd885d95-ab02-42c3-97e3-ab59ab6c115b",
+              "parentUUID": "62b36111-1841-433c-9543-947e530cb2e1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "cancel the checkout and return to the cart page",
+              "fullTitle": "Shopping Cart Tests cancel the checkout and return to the cart page",
+              "timedOut": null,
+              "duration": 5194,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Add backpack to cart\n_homePage.default.addBackpackToCart();\n// Open cart\n_CartPage.default.openCart();\n// Click checkout button\n_CartPage.default.checkoutButtonClick();\n// Cancel the checkout\n_CartPage.default.clickCancel();\n// Should be back on the cart page, item still present\ncy.url().should('include', '/cart.html');\n_CartPage.default.checkItemInCart('Sauce Labs Backpack');",
+              "err": {},
+              "uuid": "4068ade8-2652-437f-bebb-29202bf12909",
+              "parentUUID": "62b36111-1841-433c-9543-947e530cb2e1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "checkout summary total should equal subtotal plus tax",
+              "fullTitle": "Shopping Cart Tests checkout summary total should equal subtotal plus tax",
+              "timedOut": null,
+              "duration": 5807,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Add backpack to cart\n_homePage.default.addBackpackToCart();\n// Open cart\n_CartPage.default.openCart();\n// Click checkout button\n_CartPage.default.checkoutButtonClick();\n// Fill form correctly\n_CartPage.default.fillCheckoutFormCorrectly((0, _testData.generateCheckoutInfo)());\n// Move to the checkout overview\n_CartPage.default.continueButtonCheckout();\n// Business rule: total must equal subtotal + tax\n_CartPage.default.getSummaryTotals().then(({\n  subtotal,\n  tax,\n  total\n}) => {\n  expect(total).to.be.closeTo(subtotal + tax, 0.01);\n});",
+              "err": {},
+              "uuid": "42b23859-27ed-4c8a-b5e7-fea42eda2352",
+              "parentUUID": "62b36111-1841-433c-9543-947e530cb2e1",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "bfb73f71-9992-4333-a0c7-7879a6c89a2b",
+            "cb0c4e25-3b2b-4fa9-a208-1cab48e58db1",
+            "d8741925-e02c-4d14-abfe-62ea20579b1e",
+            "ebc41c52-2ca5-439a-b50f-f438c244e3e2",
+            "bd885d95-ab02-42c3-97e3-ab59ab6c115b",
+            "4068ade8-2652-437f-bebb-29202bf12909",
+            "42b23859-27ed-4c8a-b5e7-fea42eda2352"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 37559,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.3.2"
+    }
+  }
+}

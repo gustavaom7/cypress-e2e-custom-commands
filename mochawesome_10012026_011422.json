@@ -1,0 +1,168 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 3,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-10-01T01:13:49.394Z",
+    "end": "2026-10-01T01:14:22.918Z",
+    "duration": 33524,
+    "testsRegistered": 4,
+    "passPercent": 75,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "3fa40ab8-9d30-4bfc-a226-3aedaf70cc6b",
+      "title": "",
+      "fullFile": "cypress/e2e/gui/sorting.cy.js",
+      "file": "cypress/e2e/gui/sorting.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "83174154-df0f-488d-b305-ff0249983dca",
+          "title": "Product Sorting & Cart Badge Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should sort products by name from Z to A",
+              "fullTitle": "Product Sorting & Cart Badge Tests should sort products by name from Z to A",
+              "timedOut": null,
+              "duration": 5214,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_homePage.default.sortBy('za');\n_homePage.default.getProductNames().then(names => {\n  const sorted = [...names].sort().reverse();\n  expect(names).to.deep.equal(sorted);\n});",
+              "err": {},
+              "uuid": "eb189baf-a188-482a-b950-cb2447c1c10e",
+              "parentUUID": "83174154-df0f-488d-b305-ff0249983dca",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should sort products by price from low to high",
+              "fullTitle": "Product Sorting & Cart Badge Tests should sort products by price from low to high",
+              "timedOut": null,
+              "duration": 5042,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_homePage.default.sortBy('lohi');\n_homePage.default.getProductPrices().then(prices => {\n  const sorted = [...prices].sort((a, b) => a - b);\n  expect(prices).to.deep.equal(sorted);\n});",
+              "err": {},
+              "uuid": "99a05495-5210-4bf2-a3b2-109a2a56e018",
+              "parentUUID": "83174154-df0f-488d-b305-ff0249983dca",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should sort products by price from high to low",
+              "fullTitle": "Product Sorting & Cart Badge Tests should sort products by price from high to low",
+              "timedOut": null,
+              "duration": 4996,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_homePage.default.sortBy('hilo');\n_homePage.default.getProductPrices().then(prices => {\n  const sorted = [...prices].sort((a, b) => b - a);\n  expect(prices).to.deep.equal(sorted);\n});",
+              "err": {},
+              "uuid": "e4a07b5c-8cc8-4947-a4ec-6a697cd6a8d5",
+              "parentUUID": "83174154-df0f-488d-b305-ff0249983dca",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should update the cart badge count as items are added",
+              "fullTitle": "Product Sorting & Cart Badge Tests should update the cart badge count as items are added",
+              "timedOut": null,
+              "duration": 9100,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "\"cypress/screenshots/sorting.cy.js/Product Sorting & Cart Badge Tests -- should update the cart badge count as items are added (failed).png\"",
+              "code": "// No badge should be visible with an empty cart\n_homePage.default.elements.cartBadge().should('not.exist');\n_homePage.default.addBackpackToCart();\n_homePage.default.checkCartBadgeCount(1);\n_homePage.default.addBikeLightToCart();\n_homePage.default.checkCartBadgeCount(2);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `[data-test=\"add-to-cart-sauce-bike-light\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `[data-test=\"add-to-cart-sauce-bike-light\"]`, but never found it.\n    at Object.addToCartBikeLight (webpack://test-architecture/./cypress/support/pageobjects/homePage.js:6:33)\n    at addToCart.addBikeLightToCart (webpack://test-architecture/./cypress/support/pageobjects/homePage.js:31:18)\n    at Context.eval (webpack://test-architecture/./cypress/e2e/gui/sorting.cy.js:51:13)",
+                "diff": null
+              },
+              "uuid": "ed751b98-9339-4893-ad41-8cc423e43ba1",
+              "parentUUID": "83174154-df0f-488d-b305-ff0249983dca",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "eb189baf-a188-482a-b950-cb2447c1c10e",
+            "99a05495-5210-4bf2-a3b2-109a2a56e018",
+            "e4a07b5c-8cc8-4947-a4ec-6a697cd6a8d5"
+          ],
+          "failures": [
+            "ed751b98-9339-4893-ad41-8cc423e43ba1"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 24352,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.3.2"
+    }
+  }
+}

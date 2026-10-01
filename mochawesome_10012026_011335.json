@@ -1,0 +1,210 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 4,
+    "pending": 0,
+    "failures": 2,
+    "start": "2026-10-01T01:13:30.694Z",
+    "end": "2026-10-01T01:13:35.237Z",
+    "duration": 4543,
+    "testsRegistered": 6,
+    "passPercent": 66.66666666666666,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "0c6aa844-b5b0-40a1-ba32-771baf12a99d",
+      "title": "",
+      "fullFile": "cypress/e2e/gui/login.cy.js",
+      "file": "cypress/e2e/gui/login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "0b4d6f93-e8ce-4afc-a921-2fc500109b04",
+          "title": "SauceDemo Login Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should login successfully with valid credentials",
+              "fullTitle": "SauceDemo Login Tests should login successfully with valid credentials",
+              "timedOut": null,
+              "duration": 886,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_LoginPage.default.submitLogin(credentials.standardUser, credentials.password);\n// Validation: Verify URL redirection\ncy.url().should('include', '/inventory.html');",
+              "err": {},
+              "uuid": "297b0e3e-8491-4df5-829c-414eaf467ebe",
+              "parentUUID": "0b4d6f93-e8ce-4afc-a921-2fc500109b04",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should display error message for locked out user",
+              "fullTitle": "SauceDemo Login Tests should display error message for locked out user",
+              "timedOut": null,
+              "duration": 716,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_LoginPage.default.submitLogin(credentials.lockedOutUser, credentials.password);\n// Validation: Verify specific error text\n_LoginPage.default.elements.errorMessage().should('contain', 'Sorry, this user has been locked out');",
+              "err": {},
+              "uuid": "def7a300-270c-4213-8b80-d7f4383e6f4a",
+              "parentUUID": "0b4d6f93-e8ce-4afc-a921-2fc500109b04",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should display error when username field is empty",
+              "fullTitle": "SauceDemo Login Tests should display error when username field is empty",
+              "timedOut": null,
+              "duration": 206,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "\"cypress/screenshots/login.cy.js/SauceDemo Login Tests -- should display error when username field is empty (failed).png\"",
+              "code": "_LoginPage.default.submitLogin('', credentials.password);\n_LoginPage.default.elements.errorMessage().should('contain', 'Username is required');\n// Validation: user should remain on the login page\ncy.url().should('not.include', '/inventory.html');",
+              "err": {
+                "message": "CypressError: `cy.type()` cannot accept an empty string. You need to actually type something.\n\nhttps://on.cypress.io/type",
+                "estack": "CypressError: `cy.type()` cannot accept an empty string. You need to actually type something.\n\nhttps://on.cypress.io/type\n    at Context.type (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:117543:68)\n    at wrapped (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:146327:19)\nFrom Your Spec Code:\n    at Object.proxyGetter [as get] (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:81087:22)\n    at exists (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:151211:26)\n    at elExists (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:151226:10)\n    at ensureExistence (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:151407:22)\n    at onFailFn (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:151436:53)",
+                "diff": null
+              },
+              "uuid": "cc25e5e1-8652-4111-b8e4-124282b29d70",
+              "parentUUID": "0b4d6f93-e8ce-4afc-a921-2fc500109b04",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should display error when password field is empty",
+              "fullTitle": "SauceDemo Login Tests should display error when password field is empty",
+              "timedOut": null,
+              "duration": 451,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "\"cypress/screenshots/login.cy.js/SauceDemo Login Tests -- should display error when password field is empty (failed).png\"",
+              "code": "_LoginPage.default.submitLogin(credentials.standardUser, '');\n_LoginPage.default.elements.errorMessage().should('contain', 'Password is required');\ncy.url().should('not.include', '/inventory.html');",
+              "err": {
+                "message": "CypressError: `cy.type()` cannot accept an empty string. You need to actually type something.\n\nhttps://on.cypress.io/type",
+                "estack": "CypressError: `cy.type()` cannot accept an empty string. You need to actually type something.\n\nhttps://on.cypress.io/type\n    at Context.type (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:117543:68)\n    at wrapped (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:146327:19)\nFrom Your Spec Code:\n    at Object.proxyGetter [as get] (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:81087:22)\n    at exists (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:151211:26)\n    at elExists (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:151226:10)\n    at ensureExistence (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:151407:22)\n    at onFailFn (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:151436:53)",
+                "diff": null
+              },
+              "uuid": "c48e7437-b420-4feb-910b-0d8a8006415c",
+              "parentUUID": "0b4d6f93-e8ce-4afc-a921-2fc500109b04",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should display error for invalid password",
+              "fullTitle": "SauceDemo Login Tests should display error for invalid password",
+              "timedOut": null,
+              "duration": 773,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_LoginPage.default.submitLogin(credentials.standardUser, credentials.invalidPassword);\n_LoginPage.default.elements.errorMessage().should('contain', 'do not match any user');\ncy.url().should('not.include', '/inventory.html');",
+              "err": {},
+              "uuid": "95288382-d230-4348-bc30-2864ca81e6ac",
+              "parentUUID": "0b4d6f93-e8ce-4afc-a921-2fc500109b04",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should display error for unregistered username",
+              "fullTitle": "SauceDemo Login Tests should display error for unregistered username",
+              "timedOut": null,
+              "duration": 689,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_LoginPage.default.submitLogin(credentials.invalidUsername, credentials.password);\n_LoginPage.default.elements.errorMessage().should('contain', 'do not match any user');\ncy.url().should('not.include', '/inventory.html');",
+              "err": {},
+              "uuid": "c06f4a16-c590-41c5-ae5f-8454d96472dc",
+              "parentUUID": "0b4d6f93-e8ce-4afc-a921-2fc500109b04",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "297b0e3e-8491-4df5-829c-414eaf467ebe",
+            "def7a300-270c-4213-8b80-d7f4383e6f4a",
+            "95288382-d230-4348-bc30-2864ca81e6ac",
+            "c06f4a16-c590-41c5-ae5f-8454d96472dc"
+          ],
+          "failures": [
+            "cc25e5e1-8652-4111-b8e4-124282b29d70",
+            "c48e7437-b420-4feb-910b-0d8a8006415c"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 3721,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.3.2"
+    }
+  }
+}
