@@ -131,7 +131,7 @@ jobs:
         id: regression-run
         with:
           install-command: npm ci
-          command: npm run prereport && npx cypress run --spec 'cypress/e2e/${{ matrix.suite }}/**/*' --browser chrome
+          command: npm run test:${{ matrix.suite }} -- --browser chrome
 
       - name: Upload raw mochawesome json 📊
         if: always()
