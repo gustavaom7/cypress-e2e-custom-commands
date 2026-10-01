@@ -16,6 +16,7 @@ Professional hybrid automation suite (GUI & API) developed with **Cypress** and 
 * **Known-Issue Tests:** SauceDemo's special users (`problem_user`, `error_user`, `performance_glitch_user`) are covered by tests that assert each deliberate defect exists (broken images, broken sorting, a checkout field that ignores input, a silent add-to-cart error, a slow login), so a silent fix upstream surfaces for re-triage.
 * **Visual Regression:** Screenshot comparison of the login, inventory and cart pages with `cypress-image-diff-js`, plus a showcase test proving `visual_user`'s layout defects are caught against the `standard_user` baseline. Only baselines are versioned; diffs are git-ignored and kept as CI artifacts for 3 days, on failure only.
 * **Mobile Smoke:** The GUI smoke tests also run at an iPhone X viewport (375×812) to catch responsive regressions on the critical login and checkout flows.
+* **Security Checks:** Non-intrusive tests (they only read responses and act like a regular user, no scanning of third-party sites) covering security headers, session cookie flags, access control and XSS payloads in forms. Weaknesses found are documented as `FINDING` tests: missing CSP/HSTS/X-Frame-Options/X-Content-Type-Options, a session cookie without `HttpOnly`/`Secure`, and a session that is just the plain username, so setting `session-username=standard_user` grants access without a password.
 * **Accessibility Testing:** Automated a11y audits on the core pages (login, inventory, cart, checkout) via `cypress-axe`/axe-core.
 
 ### 🔌 API Automation (Backend)
