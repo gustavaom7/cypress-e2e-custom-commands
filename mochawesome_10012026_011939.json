@@ -5,9 +5,9 @@
     "passes": 3,
     "pending": 0,
     "failures": 1,
-    "start": "2026-10-01T01:13:49.394Z",
-    "end": "2026-10-01T01:14:22.918Z",
-    "duration": 33524,
+    "start": "2026-10-01T01:19:06.222Z",
+    "end": "2026-10-01T01:19:39.559Z",
+    "duration": 33337,
     "testsRegistered": 4,
     "passPercent": 75,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "3fa40ab8-9d30-4bfc-a226-3aedaf70cc6b",
+      "uuid": "7632a934-a3d2-46cf-97fe-664a49874f33",
       "title": "",
       "fullFile": "cypress/e2e/gui/sorting.cy.js",
       "file": "cypress/e2e/gui/sorting.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "83174154-df0f-488d-b305-ff0249983dca",
+          "uuid": "83ea17b6-11cd-482f-8ae5-ed48f4da831d",
           "title": "Product Sorting & Cart Badge Tests",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should sort products by name from Z to A",
               "fullTitle": "Product Sorting & Cart Badge Tests should sort products by name from Z to A",
               "timedOut": null,
-              "duration": 5214,
+              "duration": 5117,
               "state": "passed",
               "speed": "medium",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "_homePage.default.sortBy('za');\n_homePage.default.getProductNames().then(names => {\n  const sorted = [...names].sort().reverse();\n  expect(names).to.deep.equal(sorted);\n});",
               "err": {},
-              "uuid": "eb189baf-a188-482a-b950-cb2447c1c10e",
-              "parentUUID": "83174154-df0f-488d-b305-ff0249983dca",
+              "uuid": "2c7a5dea-4a93-4e26-ae19-60f992484ea0",
+              "parentUUID": "83ea17b6-11cd-482f-8ae5-ed48f4da831d",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "should sort products by price from low to high",
               "fullTitle": "Product Sorting & Cart Badge Tests should sort products by price from low to high",
               "timedOut": null,
-              "duration": 5042,
+              "duration": 5077,
               "state": "passed",
               "speed": "medium",
               "pass": true,
@@ -65,8 +65,8 @@
               "context": null,
               "code": "_homePage.default.sortBy('lohi');\n_homePage.default.getProductPrices().then(prices => {\n  const sorted = [...prices].sort((a, b) => a - b);\n  expect(prices).to.deep.equal(sorted);\n});",
               "err": {},
-              "uuid": "99a05495-5210-4bf2-a3b2-109a2a56e018",
-              "parentUUID": "83174154-df0f-488d-b305-ff0249983dca",
+              "uuid": "5e63c4c4-72f0-47ff-b747-23c8d7450ba0",
+              "parentUUID": "83ea17b6-11cd-482f-8ae5-ed48f4da831d",
               "isHook": false,
               "skipped": false
             },
@@ -74,7 +74,7 @@
               "title": "should sort products by price from high to low",
               "fullTitle": "Product Sorting & Cart Badge Tests should sort products by price from high to low",
               "timedOut": null,
-              "duration": 4996,
+              "duration": 4987,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -83,8 +83,8 @@
               "context": null,
               "code": "_homePage.default.sortBy('hilo');\n_homePage.default.getProductPrices().then(prices => {\n  const sorted = [...prices].sort((a, b) => b - a);\n  expect(prices).to.deep.equal(sorted);\n});",
               "err": {},
-              "uuid": "e4a07b5c-8cc8-4947-a4ec-6a697cd6a8d5",
-              "parentUUID": "83174154-df0f-488d-b305-ff0249983dca",
+              "uuid": "e30c83ff-0710-4687-9fc9-fa096cabc32d",
+              "parentUUID": "83ea17b6-11cd-482f-8ae5-ed48f4da831d",
               "isHook": false,
               "skipped": false
             },
@@ -92,7 +92,7 @@
               "title": "should update the cart badge count as items are added",
               "fullTitle": "Product Sorting & Cart Badge Tests should update the cart badge count as items are added",
               "timedOut": null,
-              "duration": 9100,
+              "duration": 9074,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -105,24 +105,24 @@
                 "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `[data-test=\"add-to-cart-sauce-bike-light\"]`, but never found it.\n    at Object.addToCartBikeLight (webpack://test-architecture/./cypress/support/pageobjects/homePage.js:6:33)\n    at addToCart.addBikeLightToCart (webpack://test-architecture/./cypress/support/pageobjects/homePage.js:31:18)\n    at Context.eval (webpack://test-architecture/./cypress/e2e/gui/sorting.cy.js:51:13)",
                 "diff": null
               },
-              "uuid": "ed751b98-9339-4893-ad41-8cc423e43ba1",
-              "parentUUID": "83174154-df0f-488d-b305-ff0249983dca",
+              "uuid": "75cad8d3-abfd-4ea4-bd51-bf8c6d5b02ff",
+              "parentUUID": "83ea17b6-11cd-482f-8ae5-ed48f4da831d",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "eb189baf-a188-482a-b950-cb2447c1c10e",
-            "99a05495-5210-4bf2-a3b2-109a2a56e018",
-            "e4a07b5c-8cc8-4947-a4ec-6a697cd6a8d5"
+            "2c7a5dea-4a93-4e26-ae19-60f992484ea0",
+            "5e63c4c4-72f0-47ff-b747-23c8d7450ba0",
+            "e30c83ff-0710-4687-9fc9-fa096cabc32d"
           ],
           "failures": [
-            "ed751b98-9339-4893-ad41-8cc423e43ba1"
+            "75cad8d3-abfd-4ea4-bd51-bf8c6d5b02ff"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 24352,
+          "duration": 24255,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

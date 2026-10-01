@@ -5,9 +5,9 @@
     "passes": 6,
     "pending": 0,
     "failures": 0,
-    "start": "2026-10-01T01:13:04.955Z",
-    "end": "2026-10-01T01:13:29.133Z",
-    "duration": 24178,
+    "start": "2026-10-01T01:18:22.525Z",
+    "end": "2026-10-01T01:18:46.640Z",
+    "duration": 24115,
     "testsRegistered": 6,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "9533b477-c67b-4a2e-b7db-e095cec11676",
+      "uuid": "8a1e0778-83fb-4625-998b-875e4c2bb200",
       "title": "",
       "fullFile": "cypress/e2e/gui/knownIssues.cy.js",
       "file": "cypress/e2e/gui/knownIssues.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "3aab01ac-a6cc-421d-a215-5d7eb9aac54d",
+          "uuid": "e928c1ec-8cd8-430d-ab3e-203232e4e6ed",
           "title": "Known issues - SauceDemo special users",
           "fullFile": "",
           "file": "",
@@ -36,7 +36,7 @@
           "tests": [],
           "suites": [
             {
-              "uuid": "a246d2ec-76f1-4f90-b168-26bf2680a976",
+              "uuid": "3cfdebe6-49a1-4bc4-a134-db872bd563dc",
               "title": "problem_user",
               "fullFile": "",
               "file": "",
@@ -47,7 +47,7 @@
                   "title": "BUG: every product shows the same image",
                   "fullTitle": "Known issues - SauceDemo special users problem_user BUG: every product shows the same image",
                   "timedOut": null,
-                  "duration": 1033,
+                  "duration": 981,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -56,8 +56,8 @@
                   "context": null,
                   "code": "cy.get('.inventory_item img').then($imgs => {\n  const sources = new Set([...$imgs].map(img => img.getAttribute('src')));\n  expect($imgs.length).to.be.greaterThan(1);\n  expect(sources.size, 'distinct image sources').to.eq(1);\n});",
                   "err": {},
-                  "uuid": "3f2fbacf-c79d-4154-b566-b2448effa1e1",
-                  "parentUUID": "a246d2ec-76f1-4f90-b168-26bf2680a976",
+                  "uuid": "75e8be6f-23f8-413a-a110-e939ad78feb2",
+                  "parentUUID": "3cfdebe6-49a1-4bc4-a134-db872bd563dc",
                   "isHook": false,
                   "skipped": false
                 },
@@ -65,7 +65,7 @@
                   "title": "BUG: sorting by name Z to A does not reorder products",
                   "fullTitle": "Known issues - SauceDemo special users problem_user BUG: sorting by name Z to A does not reorder products",
                   "timedOut": null,
-                  "duration": 5053,
+                  "duration": 5014,
                   "state": "passed",
                   "speed": "medium",
                   "pass": true,
@@ -74,8 +74,8 @@
                   "context": null,
                   "code": "_homePage.default.elements.productNames().then($before => {\n  const before = [...$before].map(el => el.innerText);\n  _homePage.default.elements.sortDropdown().select('za');\n  _homePage.default.elements.productNames().should($after => {\n    expect([...$after].map(el => el.innerText)).to.deep.eq(before);\n  });\n});",
                   "err": {},
-                  "uuid": "6219be9d-5ece-4c90-8bd7-7a1e58db4338",
-                  "parentUUID": "a246d2ec-76f1-4f90-b168-26bf2680a976",
+                  "uuid": "7e73f72c-da82-4b8b-a476-4280d5a9578e",
+                  "parentUUID": "3cfdebe6-49a1-4bc4-a134-db872bd563dc",
                   "isHook": false,
                   "skipped": false
                 },
@@ -83,7 +83,7 @@
                   "title": "BUG: the checkout last name field does not accept input",
                   "fullTitle": "Known issues - SauceDemo special users problem_user BUG: the checkout last name field does not accept input",
                   "timedOut": null,
-                  "duration": 5492,
+                  "duration": 5516,
                   "state": "passed",
                   "speed": "medium",
                   "pass": true,
@@ -92,28 +92,28 @@
                   "context": null,
                   "code": "_homePage.default.addBackpackToCart();\n_CartPage.default.openCart();\n_CartPage.default.checkoutButtonClick();\n_CartPage.default.elements.firstNameField().type('Ada');\n_CartPage.default.elements.lastNameField().type('Lovelace');\n_CartPage.default.elements.lastNameField().should('have.value', '');",
                   "err": {},
-                  "uuid": "fa28416b-496b-4548-83fb-9b364569ff95",
-                  "parentUUID": "a246d2ec-76f1-4f90-b168-26bf2680a976",
+                  "uuid": "5bae5df5-0f2b-438e-80b3-8dd012263f75",
+                  "parentUUID": "3cfdebe6-49a1-4bc4-a134-db872bd563dc",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "3f2fbacf-c79d-4154-b566-b2448effa1e1",
-                "6219be9d-5ece-4c90-8bd7-7a1e58db4338",
-                "fa28416b-496b-4548-83fb-9b364569ff95"
+                "75e8be6f-23f8-413a-a110-e939ad78feb2",
+                "7e73f72c-da82-4b8b-a476-4280d5a9578e",
+                "5bae5df5-0f2b-438e-80b3-8dd012263f75"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 11578,
+              "duration": 11511,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "b51782fd-75e2-4baf-8666-3b2a1c5fe9d8",
+              "uuid": "e2341582-6a8e-4d45-924d-c9e851fd93c3",
               "title": "error_user",
               "fullFile": "",
               "file": "",
@@ -124,7 +124,7 @@
                   "title": "BUG: sorting products shows a \"Sorting is broken\" alert",
                   "fullTitle": "Known issues - SauceDemo special users error_user BUG: sorting products shows a \"Sorting is broken\" alert",
                   "timedOut": null,
-                  "duration": 953,
+                  "duration": 1082,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -133,8 +133,8 @@
                   "context": null,
                   "code": "const alert = cy.stub().as('alert');\ncy.on('window:alert', alert);\n_homePage.default.elements.sortDropdown().select('za');\ncy.get('@alert').should('have.been.calledWithMatch', /sorting is broken/i);",
                   "err": {},
-                  "uuid": "6490557f-fa85-45d3-85ce-e7e38c8b7b1f",
-                  "parentUUID": "b51782fd-75e2-4baf-8666-3b2a1c5fe9d8",
+                  "uuid": "287300fa-90c4-4aed-83bb-1d3830860698",
+                  "parentUUID": "e2341582-6a8e-4d45-924d-c9e851fd93c3",
                   "isHook": false,
                   "skipped": false
                 },
@@ -142,36 +142,36 @@
                   "title": "BUG: adding the Fleece Jacket to the cart throws and adds nothing",
                   "fullTitle": "Known issues - SauceDemo special users error_user BUG: adding the Fleece Jacket to the cart throws and adds nothing",
                   "timedOut": null,
-                  "duration": 5018,
+                  "duration": 4931,
                   "state": "passed",
-                  "speed": "medium",
+                  "speed": "fast",
                   "pass": true,
                   "fail": false,
                   "pending": false,
                   "context": null,
                   "code": "// The app throws on this click; capture it as the bug instead of failing the test\nconst appError = cy.stub().returns(false).as('appError');\ncy.on('uncaught:exception', appError);\n_homePage.default.elements.addToCartFleeceJacket().click();\nconst {\n  match\n} = Cypress.sinon;\ncy.get('@appError').should('have.been.calledWithMatch', match.has('message', match(/Failed to add item to the cart/)));\n_homePage.default.elements.cartBadge().should('not.exist');",
                   "err": {},
-                  "uuid": "e183811a-94c0-413a-91fd-e59a3e8ac08f",
-                  "parentUUID": "b51782fd-75e2-4baf-8666-3b2a1c5fe9d8",
+                  "uuid": "20f5d181-6cc5-484b-834d-5dcf13ec8d52",
+                  "parentUUID": "e2341582-6a8e-4d45-924d-c9e851fd93c3",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "6490557f-fa85-45d3-85ce-e7e38c8b7b1f",
-                "e183811a-94c0-413a-91fd-e59a3e8ac08f"
+                "287300fa-90c4-4aed-83bb-1d3830860698",
+                "20f5d181-6cc5-484b-834d-5dcf13ec8d52"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 5971,
+              "duration": 6013,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
             },
             {
-              "uuid": "81d51dd6-4bca-44d3-a0c4-1796aa5332d7",
+              "uuid": "6c6f2b8c-290f-4748-b2d7-6f1698a75196",
               "title": "performance_glitch_user",
               "fullFile": "",
               "file": "",
@@ -182,7 +182,7 @@
                   "title": "BUG: login is much slower than for standard_user",
                   "fullTitle": "Known issues - SauceDemo special users performance_glitch_user BUG: login is much slower than for standard_user",
                   "timedOut": null,
-                  "duration": 6441,
+                  "duration": 6408,
                   "state": "passed",
                   "speed": "medium",
                   "pass": true,
@@ -191,20 +191,20 @@
                   "context": null,
                   "code": "const timeLogin = username => {\n  cy.visit('/');\n  cy.get('[data-test=\"username\"]').type(username);\n  cy.get('[data-test=\"password\"]').type(password);\n  return cy.then(() => Date.now()).then(start => {\n    cy.get('[data-test=\"login-button\"]').click();\n    cy.get('.inventory_list', {\n      timeout: 15000\n    }).should('be.visible');\n    return cy.then(() => Date.now() - start);\n  });\n};\ntimeLogin('standard_user').then(baseline => {\n  timeLogin('performance_glitch_user').then(glitched => {\n    // SauceDemo injects a ~5s delay; 2s of margin keeps this stable\n    expect(glitched - baseline, 'extra login time (ms)').to.be.greaterThan(2000);\n  });\n});",
                   "err": {},
-                  "uuid": "d41ebc26-8ef8-4d3a-9bc4-4ea868170f5a",
-                  "parentUUID": "81d51dd6-4bca-44d3-a0c4-1796aa5332d7",
+                  "uuid": "13c88f16-4f11-4029-b756-18f6c21791a7",
+                  "parentUUID": "6c6f2b8c-290f-4748-b2d7-6f1698a75196",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "d41ebc26-8ef8-4d3a-9bc4-4ea868170f5a"
+                "13c88f16-4f11-4029-b756-18f6c21791a7"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 6441,
+              "duration": 6408,
               "root": false,
               "rootEmpty": false,
               "_timeout": 2000
