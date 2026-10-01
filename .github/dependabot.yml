@@ -6,6 +6,10 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    ignore:
+      # cypress-axe only accepts Cypress <= 15; revisit when it supports 16
+      - dependency-name: cypress
+        update-types: [version-update:semver-major]
     groups:
       dev-dependencies:
         dependency-type: development
