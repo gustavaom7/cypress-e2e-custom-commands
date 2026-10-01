@@ -1,0 +1,28 @@
+name: Visual baselines 🖼️
+
+# Manual only: regenerates the visual regression baselines on Linux (the same
+# rendering as the `visual` CI job) and publishes them as a short-lived
+# artifact. Download it, review the images and commit them yourself.
+on:
+  workflow_dispatch:
+
+jobs:
+  update-baselines:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Generate baselines 🖼️
+        uses: cypress-io/github-action@v6
+        with:
+          install-command: npm ci
+          command: npm run test:visual:update
+          browser: chrome
+
+      - name: Upload baselines 📦
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-baselines
+          path: cypress/visual/cypress-image-diff-screenshots/baseline
+          retention-days: 3

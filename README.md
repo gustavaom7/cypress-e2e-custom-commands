@@ -13,6 +13,8 @@ Professional hybrid automation suite (GUI & API) developed with **Cypress** and 
 * **Page Object Model (POM):** Scalable architecture for UI elements and actions.
 * **Session Management:** Optimized login flow using `cy.session` to bypass repetitive UI login steps, reducing execution time by ~30%.
 * **Custom Commands:** Encapsulated reusable logic for cleaner test scripts.
+* **Known-Issue Tests:** SauceDemo's special users (`problem_user`, `error_user`, `performance_glitch_user`) are covered by tests that assert each deliberate defect exists (broken images, broken sorting, a checkout field that ignores input, a silent add-to-cart error, a slow login), so a silent fix upstream surfaces for re-triage.
+* **Visual Regression:** Screenshot comparison of the login, inventory and cart pages with `cypress-image-diff-js`, plus a showcase test proving `visual_user`'s layout defects are caught against the `standard_user` baseline. Only baselines are versioned; diffs are git-ignored and kept as CI artifacts for 3 days, on failure only.
 * **Accessibility Testing:** Automated a11y audits on the core pages (login, inventory, cart, checkout) via `cypress-axe`/axe-core.
 
 ### 🔌 API Automation (Backend)
@@ -42,6 +44,7 @@ testsArchitecture/
 │   ├── e2e/
 │   │   ├── api/         # Backend contract, mocking and functional tests
 │   │   └── gui/         # UI/Functional and accessibility tests (SauceDemo)
+│   ├── visual/          # Visual regression spec and CI-generated baselines
 │   ├── lighthouse/      # Lighthouse audits (outside e2e/, so regular suites skip them)
 │   ├── fixtures/        # Test data in JSON format
 │   └── support/         # Custom commands, dynamic test data and global config
@@ -82,6 +85,8 @@ testsArchitecture/
 
 **Lighthouse (Chrome):** `npm run test:lighthouse`
 
+**Visual Regression:** `npm run test:visual` (baselines come from CI; run the manual **Visual baselines** workflow, review the artifact and commit it to `cypress/visual/cypress-image-diff-screenshots/baseline/`. Locally, `npm run test:visual:update` regenerates them, but macOS renders fonts differently from CI, so don't commit local baselines)
+
 k6 reports land in `performance/reports/` (`*-report.html` and `*-summary.json`).
 
 4. **Code Quality**
@@ -96,7 +101,8 @@ The automation runs on **Ubuntu-latest** via **GitHub Actions**, with four stage
 1. **Lint** — runs on every push/PR, gates everything else.
 2. **Smoke** — a small set of critical happy-path tests, runs on every push/PR for fast feedback.
 3. **Regression** — the full suite, split into parallel jobs by spec folder, runs on every push to `main`/`master`; a follow-up job merges every shard's report into one HTML report and publishes it, even if some tests failed.
-4. **Performance** — k6 smoke on every push/PR; k6 load and Lighthouse audits only on pushes to `main`/`master`. Reports are uploaded as workflow artifacts.
+4. **Performance** — k6 smoke on every push/PR; k6 load and Lighthouse audits only on pushes to `main`/`master`.
+5. **Visual** — screenshot comparison on pushes to `main`/`master` (skipped until baselines are committed). CI artifacts use short retention (1–7 days) so reports don't pile up. Reports are uploaded as workflow artifacts.
 
 [**📊 View Latest Automation Report**](https://gustavaom7.github.io/testsArchitecture/full-report.html)
 

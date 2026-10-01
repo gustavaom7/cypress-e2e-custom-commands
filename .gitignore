@@ -45,3 +45,7 @@ hs_err_pid*
 
 #Dependency directory
 node_modules
+#Visual regression (only baselines are versioned)
+cypress/visual/cypress-image-diff-screenshots/comparison
+cypress/visual/cypress-image-diff-screenshots/diff
+cypress/visual/cypress-image-diff-html-report
