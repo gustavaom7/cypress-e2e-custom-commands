@@ -140,6 +140,8 @@ jobs:
           name: regression-json-${{ matrix.suite }}
           retention-days: 1
           path: cypress/reports/mochawesome*.json
+          # No JSON means Cypress never ran: fail loudly instead of a green shard
+          if-no-files-found: error
 
       - name: Fail workflow if regression tests failed ❌
         if: steps.regression-run.outcome == 'failure'
