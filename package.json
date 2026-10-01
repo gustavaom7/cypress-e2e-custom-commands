@@ -11,6 +11,7 @@
     "test:headed": "npm run prereport && cypress run --headed --browser chrome",
     "test:headless": "npm run prereport && cypress run --browser chrome",
     "test:smoke": "npm run prereport && cypress run --browser chrome --expose grepTags=\"@smoke\",grepFilterSpecs=true",
+    "test:smoke:mobile": "npm run prereport && cypress run --browser chrome --spec 'cypress/e2e/gui/**/*' --config viewportWidth=375,viewportHeight=812 --expose grepTags=\"@smoke\",grepFilterSpecs=true",
     "test:regression": "npm run prereport && cypress run --browser chrome",
     "perf:smoke": "k6 run performance/k6/smoke.test.js",
     "perf:load": "k6 run performance/k6/load.test.js",

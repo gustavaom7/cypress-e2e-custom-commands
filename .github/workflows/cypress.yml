@@ -24,21 +24,30 @@ jobs:
       - name: Run lint 🔍
         run: npm run lint
 
-  # Fast feedback on every push/PR: only the tests tagged @smoke.
+  # Fast feedback on every push/PR: only the tests tagged @smoke, on desktop
+  # and on a mobile viewport (iPhone X, GUI specs only).
   smoke:
     needs: lint
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - viewport: desktop
+            command: npm run test:smoke
+          - viewport: mobile
+            command: npm run test:smoke:mobile
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
-      - name: Cypress run (smoke) 🌲
+      - name: Cypress run (smoke - ${{ matrix.viewport }}) 🌲
         uses: cypress-io/github-action@v6
         continue-on-error: true
         id: smoke-run
         with:
           install-command: npm ci
-          command: npm run test:smoke
+          command: ${{ matrix.command }}
 
       - name: Generate HTML Report 📊
         if: always()
@@ -48,7 +57,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: smoke-report
+          name: smoke-report-${{ matrix.viewport }}
           retention-days: 7
           path: cypress/reports
 

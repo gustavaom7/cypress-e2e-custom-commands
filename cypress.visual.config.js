@@ -11,6 +11,9 @@ module.exports = defineConfig({
     viewportWidth: 1280,
     viewportHeight: 720,
     screenshotOnRunFailure: false,
+    // Plain console output: no mochawesome JSON piling up in cypress/reports
+    reporter: 'spec',
+    reporterOptions: {},
     setupNodeEvents(on, config) {
       require('cypress-image-diff-js/plugin')(on, config);
       return config;
